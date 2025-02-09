@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine, Winona?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        body {
+            font-family: 'Dancing Script', cursive;
+            background-color: #ffccd5;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 70px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 48px;
+        }
+        p {
+            color: #333;
+            font-size: 32px;
+        }
+        .heart {
+            font-size: 80px;
+            color: red;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 15px 35px;
+            font-size: 24px;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: 0.3s;
+            margin: 15px;
+        }
+        .yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #d81b60;
+        }
+        .no {
+            background-color: #ccc;
+            color: black;
+        }
+        .no:hover {
+            background-color: #999;
+        }
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .floating-hearts span {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: float 5s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts"></div>
+    <div class="card">
+        <h1>Winona, Will You Be My Valentine? 💖</h1>
+        <p>I love you so much honey. Happy 3rd Valentines :)</p>
+        <div class="heart">❤️</div>
+        <div class="buttons">
+            <button class="btn yes" onclick="yesResponse()">Yes! 💕</button>
+            <button class="btn no" onclick="noResponse()">No... 😢</button>
+        </div>
+    </div>
+    <script>
+        function yesResponse() {
+            document.body.innerHTML = '<div class="floating-hearts"></div>' +
+                                      '<div style="position: absolute; width: 100%; height: 100%; background: url(\'https://i.imgur.com/a/b9SwB4T.jpeg\') no-repeat center center / cover; z-index: -1;"></div>' +
+                                      '<h1 style="color: #ff4081; text-align: center; margin-top: 50px; font-family: \"Dancing Script\", cursive; font-size: 48px;">I knew you\'d say yes! ❤️ You\'re invited to a Valentine\'s Day movie date on February 14th at 9 PM! 🎬🍿</h1>';
+            startHeartAnimation();
+        }
+
+        function noResponse() {
+            alert("Oh no! But I still think you're amazing! 😢");
+        }
+
+        function createHearts() {
+            const container = document.querySelector('.floating-hearts');
+            if (!container) return; // Ensure the container exists
+
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement('span');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+                container.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 5000);
+            }
+        }
+
+        function startHeartAnimation() {
+            setInterval(createHearts, 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(createHearts, 500);
+        });
+    </script>
+</body>
+</html>
